@@ -1,6 +1,6 @@
-package piero.examendaw.dto;
+package antony.examendaw.dto;
 
-import piero.examendaw.entities.Medico;
+import antony.examendaw.entities.Medico;
 
 public class MedicoEspecialidad {
 

@@ -1,10 +1,10 @@
-package piero.examendaw.excepciones;
+package antony.examendaw.excepciones;
 
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.servlet.ModelAndView;
 
-import piero.examendaw.errors.EspecialidadError;
+import antony.examendaw.errors.EspecialidadError;
 
 @ControllerAdvice
 public class GlobalExceptionHandler {

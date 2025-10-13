@@ -1,12 +1,12 @@
-package piero.examendaw.controllers;
+package antony.examendaw.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import piero.examendaw.entities.Medico;
-import piero.examendaw.services.MedicoService;
-import piero.examendaw.services.EspecialidadService;
+import antony.examendaw.entities.Medico;
+import antony.examendaw.services.MedicoService;
+import antony.examendaw.services.EspecialidadService;
 
 @Controller
 @RequestMapping("/medicos")

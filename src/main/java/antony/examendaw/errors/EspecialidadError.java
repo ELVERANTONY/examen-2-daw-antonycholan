@@ -1,4 +1,4 @@
-package piero.examendaw.errors;
+package antony.examendaw.errors;
 
 public class EspecialidadError extends RuntimeException {
 
