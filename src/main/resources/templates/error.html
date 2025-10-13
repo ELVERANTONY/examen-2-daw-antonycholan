@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title th:text="${titulo}">Error</title>
+    <link rel="stylesheet" th:href="@{/css/main.css}">
+</head>
+<body>
+<div class="container" style="text-align:center; margin-top:50px;">
+    <h1 th:text="${titulo}">Error</h1>
+    <h2 th:text="'Código: ' + ${codigo}"></h2>
+    <p th:text="${mensaje}"></p>
+    <a th:href="@{/especialidades}" class="btn btn-primary">Volver al inicio</a>
+</div>
+</body>
+</html>

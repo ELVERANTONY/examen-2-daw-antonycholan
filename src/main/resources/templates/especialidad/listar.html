@@ -1,0 +1,45 @@
+<!-- Navbar -->
+<div th:replace="fragments/navbar"></div>
+
+<div class="container mt-5 pt-4">
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <h2>Especialidades</h2>
+        <a th:href="@{/especialidades/crear}" class="btn btn-success">
+            <i class="bi bi-plus-circle"></i> Crear Especialidad
+        </a>
+    </div>
+
+    <table class="table table-bordered table-hover text-center shadow-sm">
+        <thead class="table-dark">
+        <tr>
+            <th>CODIGO</th>
+            <th>NOMBRE</th>
+            <th>DESCRIPCIÓN</th>
+            <th>ACCIONES</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="especialidad : ${especialidades}">
+            <td th:text="${especialidad.id}"></td>
+            <td th:text="${especialidad.nombre}"></td>
+            <td th:text="${especialidad.descripcion}"></td>
+            <td>
+                <a class="btn btn-sm btn-primary me-1"
+                   th:href="@{'/especialidades/actualizar/' + ${especialidad.id}}">
+                    <i class="bi bi-pencil-square"></i>
+                </a>
+                <form th:action="@{'/especialidades/eliminar/' + ${especialidad.id}}" method="post"
+                      style="display:inline;">
+                    <button type="submit" class="btn btn-sm btn-danger"
+                            onclick="return confirm('¿Seguro que deseas eliminar esta especialidad?');">
+                        <i class="bi bi-trash3"></i>
+                    </button>
+                </form>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+</body>
+</html>
