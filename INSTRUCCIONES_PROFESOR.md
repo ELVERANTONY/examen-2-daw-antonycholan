@@ -30,3 +30,10 @@ http://localhost:8080
 ### Puerto de la Aplicación
 ```
 http://localhost:8080
+
+```
+## Autor
+**Elver Antony Cholan Garcia**
+
+## Repositorio
+https://github.com/ELVERANTONY/examen-2-daw-antonycholan.git
