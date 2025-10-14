@@ -1,4 +1,4 @@
-package antony.examendaw.model;
+package antony.examendaw.entities;
 
 import jakarta.persistence.*;
 import java.time.LocalDate;
@@ -12,11 +12,13 @@ public class Cita {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false)
-    private String paciente;
+    @ManyToOne
+    @JoinColumn(name = "paciente_id", nullable = false)
+    private Paciente paciente;
 
-    @Column(nullable = false)
-    private String medico;
+    @ManyToOne
+    @JoinColumn(name = "medico_id", nullable = false)
+    private Medico medico;
 
     private LocalDate fecha;
     private LocalTime hora;
@@ -33,19 +35,19 @@ public class Cita {
         this.id = id;
     }
 
-    public String getPaciente() {
+    public Paciente getPaciente() {
         return paciente;
     }
 
-    public void setPaciente(String paciente) {
+    public void setPaciente(Paciente paciente) {
         this.paciente = paciente;
     }
 
-    public String getMedico() {
+    public Medico getMedico() {
         return medico;
     }
 
-    public void setMedico(String medico) {
+    public void setMedico(Medico medico) {
         this.medico = medico;
     }
 

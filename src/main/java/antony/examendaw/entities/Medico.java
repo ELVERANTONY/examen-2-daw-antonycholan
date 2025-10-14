@@ -16,7 +16,7 @@ public class Medico {
     private String apellido;
     private String colegiatura;
     private String telefono;
-    private String estado;
+    private Boolean estado;
 
     @ManyToMany
     @JoinTable(
@@ -66,11 +66,11 @@ public class Medico {
         this.colegiatura = colegiatura;
     }
 
-    public String getEstado() {
+    public Boolean getEstado() {
         return estado;
     }
 
-    public void setEstado(String estado) {
+    public void setEstado(Boolean estado) {
         this.estado = estado;
     }
 
