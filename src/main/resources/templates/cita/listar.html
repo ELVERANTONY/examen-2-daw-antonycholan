@@ -1,0 +1,46 @@
+<div th:replace="fragments/navbar"></div>
+
+<div class="container mt-5">
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <h2 class="mb-0">Lista de Citas Médicas</h2>
+        <a th:href="@{/citas/crear}" class="btn btn-success">
+            <i class="bi bi-plus-circle"></i> Registrar Cita
+        </a>
+    </div>
+
+    <table class="table table-hover table-bordered align-middle text-center shadow-sm">
+        <thead class="table-dark">
+        <tr>
+            <th>CODIGO</th>
+            <th>PACIENTE</th>
+            <th>MÉDICO</th>
+            <th>FECHA</th>
+            <th>MOTIVO</th>
+            <th>ACCIONES</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="cita : ${citas}">
+            <td th:text="${cita.id}"></td>
+            <td th:text="${cita.paciente}"></td>
+            <td th:text="${cita.medico.nombre + ' ' + cita.medico.apellido}"></td>
+            <td th:text="${#dates.format(cita.fecha, 'yyyy-MM-dd HH:mm')}"></td>
+            <td th:text="${cita.motivo}"></td>
+
+            <td>
+                <a th:href="@{'/citas/editar/' + ${cita.id}}" class="btn btn-sm btn-primary">
+                    <i class="bi bi-pencil-square"></i>
+                </a>
+                <form th:action="@{'/citas/eliminar/' + ${cita.id}}" method="post" style="display:inline;">
+                    <button type="submit" class="btn btn-sm btn-danger"
+                            onclick="return confirm('¿Deseas eliminar esta cita?');">
+                        <i class="bi bi-trash3"></i>
+                    </button>
+                </form>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>

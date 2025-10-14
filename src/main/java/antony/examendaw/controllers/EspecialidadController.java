@@ -9,7 +9,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/citas")
-public class CitaController {
+class CitaController {
 
     private final CitaService citaService;
 

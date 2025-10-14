@@ -1,0 +1,53 @@
+<div th:replace="fragments/navbar"></div>
+
+<div class="container mt-5 pt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card shadow-lg border-0 rounded-3">
+                <div class="card-header bg-primary text-white text-center">
+                    <h4>Editar Cita Médica</h4>
+                </div>
+                <div class="card-body">
+                    <form th:action="@{/citas/actualizar}" th:object="${cita}" method="post">
+
+                        <input type="hidden" th:field="*{id}">
+
+                        <div class="mb-3">
+                            <label class="form-label">Paciente</label>
+                            <input type="text" th:field="*{paciente}" class="form-control" required>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">Médico</label>
+                            <select th:field="*{medico}" class="form-select" required>
+                                <option th:each="medico : ${medicos}"
+                                        th:value="${medico.id}"
+                                        th:text="${medico.nombre + ' ' + medico.apellido}"
+                                        th:selected="${medico.id == cita.medico.id}">
+                                </option>
+                            </select>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">Fecha y Hora</label>
+                            <input type="datetime-local" th:field="*{fecha}" class="form-control" required>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">Motivo</label>
+                            <textarea th:field="*{motivo}" class="form-control" rows="3" required></textarea>
+                        </div>
+
+                        <div class="d-flex justify-content-between">
+                            <a th:href="@{/citas}" class="btn btn-secondary">Cancelar</a>
+                            <button type="submit" class="btn btn-primary">Actualizar</button>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
