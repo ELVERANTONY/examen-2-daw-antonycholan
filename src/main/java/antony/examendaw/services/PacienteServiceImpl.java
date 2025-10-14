@@ -14,6 +14,9 @@ public class PacienteServiceImpl implements PacienteService {
     @Autowired
     private PacienteRepository pacienteRepository;
 
+    @Autowired
+    private HistoriaClinicaService historiaClinicaService;
+
     @Override
     public List<Paciente> findAll() {
         return pacienteRepository.findAll();
@@ -26,7 +29,13 @@ public class PacienteServiceImpl implements PacienteService {
 
     @Override
     public void save(Paciente paciente) {
-        pacienteRepository.save(paciente);
+        // Si es un nuevo paciente, crear historia clínica automáticamente
+        if (paciente.getId() == null) {
+            Paciente pacienteGuardado = pacienteRepository.save(paciente);
+            historiaClinicaService.crearHistoriaClinica(pacienteGuardado);
+        } else {
+            pacienteRepository.save(paciente);
+        }
     }
 
     @Override

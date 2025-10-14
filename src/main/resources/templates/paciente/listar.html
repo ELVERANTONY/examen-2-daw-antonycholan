@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Pacientes - Sistema de Gestión Hospitalaria</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+</head>
+<body>
+
+<!-- Navbar -->
+<div th:replace="fragments/navbar"></div>
+
+<div class="container mt-5 pt-4">
+    <h2 class="mb-4">Lista de Pacientes</h2>
+    
+    <a th:href="@{/pacientes/crear}" class="btn btn-success mb-3">
+        <i class="bi bi-plus-circle"></i> Registrar Paciente
+    </a>
+
+    <table class="table table-hover table-bordered align-middle text-center shadow-sm">
+        <thead class="table-dark">
+        <tr>
+            <th>CÓDIGO</th>
+            <th>NOMBRES</th>
+            <th>APELLIDOS</th>
+            <th>DNI</th>
+            <th>TELÉFONO</th>
+            <th>CORREO</th>
+            <th>ESTADO</th>
+            <th>ACCIONES</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="paciente : ${pacientes}">
+            <td th:text="${paciente.id}"></td>
+            <td th:text="${paciente.nombres}"></td>
+            <td th:text="${paciente.apellidos}"></td>
+            <td th:text="${paciente.dni}"></td>
+            <td th:text="${paciente.telefono}"></td>
+            <td th:text="${paciente.correo}"></td>
+            <td>
+                <span th:if="${paciente.activo}" class="badge bg-success">ACTIVO</span>
+                <span th:unless="${paciente.activo}" class="badge bg-danger">INACTIVO</span>
+            </td>
+            <td>
+                <a th:href="@{'/pacientes/detalle/' + ${paciente.id}}" class="btn btn-sm btn-info me-1" title="Ver Historia Clínica">
+                    <i class="bi bi-file-medical"></i>
+                </a>
+                <a th:href="@{'/pacientes/actualizar/' + ${paciente.id}}" class="btn btn-sm btn-primary me-1" title="Editar">
+                    <i class="bi bi-pencil-square"></i>
+                </a>
+                <form th:if="${paciente.activo}" th:action="@{'/pacientes/desactivar/' + ${paciente.id}}" method="post" style="display:inline;">
+                    <button type="submit" class="btn btn-sm btn-warning" title="Desactivar"
+                            onclick="return confirm('¿Desactivar este paciente?');">
+                        <i class="bi bi-x-circle"></i>
+                    </button>
+                </form>
+                <form th:unless="${paciente.activo}" th:action="@{'/pacientes/activar/' + ${paciente.id}}" method="post" style="display:inline;">
+                    <button type="submit" class="btn btn-sm btn-success" title="Activar">
+                        <i class="bi bi-check-circle"></i>
+                    </button>
+                </form>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

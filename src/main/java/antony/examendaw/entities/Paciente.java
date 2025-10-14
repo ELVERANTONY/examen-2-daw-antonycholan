@@ -17,6 +17,10 @@ public class Paciente {
     private String dni;
     private String telefono;
     private String correo;
+    private Boolean activo = true;
+    
+    @OneToOne(mappedBy = "paciente", cascade = CascadeType.ALL)
+    private HistoriaClinica historiaClinica;
     
     @OneToMany(mappedBy = "paciente")
     private List<Cita> citas = new ArrayList<>();
@@ -76,6 +80,22 @@ public class Paciente {
     
     public void setCitas(List<Cita> citas) {
         this.citas = citas;
+    }
+    
+    public Boolean getActivo() {
+        return activo;
+    }
+    
+    public void setActivo(Boolean activo) {
+        this.activo = activo;
+    }
+    
+    public HistoriaClinica getHistoriaClinica() {
+        return historiaClinica;
+    }
+    
+    public void setHistoriaClinica(HistoriaClinica historiaClinica) {
+        this.historiaClinica = historiaClinica;
     }
     
     public String getNombreCompleto() {
